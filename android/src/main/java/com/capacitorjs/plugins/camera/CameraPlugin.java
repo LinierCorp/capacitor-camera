@@ -213,12 +213,12 @@ public class CameraPlugin extends Plugin {
     }
 
      private boolean checkPhotosPermissions(PluginCall call) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT < 30) {
             if (getPermissionState(PHOTOS) != PermissionState.GRANTED) {
                 requestPermissionForAlias(PHOTOS, call, "cameraPermissionsCallback");
                 return false;
             }
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        } else if (Build.VERSION.SDK_INT < 33) {
             if (getPermissionState(READ_EXTERNAL_STORAGE) != PermissionState.GRANTED) {
                 requestPermissionForAlias(READ_EXTERNAL_STORAGE, call, "cameraPermissionsCallback");
                 return false;
@@ -247,9 +247,9 @@ public class CameraPlugin extends Plugin {
                 return;
             } else if (settings.getSource() == CameraSource.PHOTOS) {
                 String alias = MEDIA;
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                if (Build.VERSION.SDK_INT < 30) {
                     alias = PHOTOS;
-                } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                } else if (Build.VERSION.SDK_INT < 33) {
                     alias = READ_EXTERNAL_STORAGE;
                 }
                 PermissionState permissionState = getPermissionState(alias);
@@ -266,13 +266,13 @@ public class CameraPlugin extends Plugin {
     @Override
     protected void requestPermissionForAliases(@NonNull String[] aliases, @NonNull PluginCall call, @NonNull String callbackName) {
         // If the SDK version is 33 or higher, use the MEDIA alias permissions instead.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= 33) {
             for (int i = 0; i < aliases.length; i++) {
                 if (aliases[i].equals(PHOTOS)) {
                     aliases[i] = MEDIA;
                 }
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        } else if (Build.VERSION.SDK_INT >= 30) {
             for (int i = 0; i < aliases.length; i++) {
                 if (aliases[i].equals(PHOTOS)) {
                     aliases[i] = READ_EXTERNAL_STORAGE;
@@ -630,7 +630,7 @@ public class CameraPlugin extends Plugin {
                 String fileToSavePath = imageEditedFileSavePath != null ? imageEditedFileSavePath : imageFileSavePath;
                 File fileToSave = new File(fileToSavePath);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (Build.VERSION.SDK_INT >= 29) {
                     ContentResolver resolver = getContext().getContentResolver();
                     ContentValues values = new ContentValues();
                     values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileToSave.getName());
@@ -826,9 +826,9 @@ public class CameraPlugin extends Plugin {
         }
 
         // If the SDK version is 30 or higher, update the PHOTOS state to match the MEDIA or READ_EXTERNAL_STORAGE states.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= 30) {
             String alias = READ_EXTERNAL_STORAGE;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= 33) {
                 alias = MEDIA;
             }
             if (permissionStates.containsKey(alias)) {
