@@ -1,11 +1,11 @@
-# @capacitor/camera
+# @linier/camera
 
 The Camera API provides the ability to take a photo with the camera or choose an existing one from the photo album.
 
 ## Install
 
 ```bash
-npm install @capacitor/camera
+npm install @linier/camera
 npx cap sync
 ```
 
@@ -48,7 +48,7 @@ This plugin will use the following project variables (defined in your app's `var
 ## Example
 
 ```typescript
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType } from '@linier/camera';
 
 const takePicture = async () => {
   const image = await Camera.getPhoto({

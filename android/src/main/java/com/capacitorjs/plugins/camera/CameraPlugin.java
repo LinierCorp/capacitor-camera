@@ -78,7 +78,7 @@ import org.json.JSONException;
         so that the end user does not need to explicitly use separate aliases depending
         on the SDK version.
          */
-        @Permission(strings = { Manifest.permission.READ_MEDIA_IMAGES }, alias = CameraPlugin.MEDIA)
+        @Permission(strings = { "android.permission.READ_MEDIA_IMAGES" }, alias = CameraPlugin.MEDIA)
 
     }
 )
