@@ -1,6 +1,6 @@
 {
   "name": "@linier/camera",
-  "version": "4.1.8",
+  "version": "4.1.9",
   "description": "The Camera API provides the ability to take a photo with the camera or choose an existing one from the photo album.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
