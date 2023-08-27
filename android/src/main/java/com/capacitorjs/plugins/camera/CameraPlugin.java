@@ -264,7 +264,7 @@ public class CameraPlugin extends Plugin {
     }
 
     @Override
-    protected void requestPermissionForAliases(@NonNull String[] aliases, @NonNull PluginCall call, @NonNull String callbackName) {
+    protected void requestPermissionForAliases(@String[] aliases, PluginCall call, String callbackName) {
         // If the SDK version is 33 or higher, use the MEDIA alias permissions instead.
         if (Build.VERSION.SDK_INT >= 33) {
             for (int i = 0; i < aliases.length; i++) {
