@@ -4,7 +4,7 @@ export default {
     {
       file: 'dist/plugin.js',
       format: 'iife',
-      name: 'capacitorCamera',
+      name: 'LinierCamera',
       globals: {
         '@capacitor/core': 'capacitorExports',
       },
